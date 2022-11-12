@@ -152,6 +152,22 @@ export default {
         }),
       )
 
+      // Delete UseCase
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/controllers`,
+          template: 'deleteController.hbs',
+          name: 'Delete{{pascalCase moduleName}}.controller.php',
+        }),
+      )
+
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/useCases`,
+          template: 'deleteUseCase.hbs',
+          name: 'Delete{{pascalCase moduleName}}.useCase.php',
+        }),
+      )
 
       return arrayFiles
     }
