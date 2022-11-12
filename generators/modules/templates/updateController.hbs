@@ -2,11 +2,11 @@
 require_once plugin_dir_path(__FILE__) . '../../../../core/helpers/index.php';
 require_once plugin_dir_path(__FILE__) . '../useCases/index.php';
 
-class UpdateProductController {
+class Update{{pascalCase moduleName}}Controller {
   function __construct() {
-    $this->route = '/product';
+    $this->route = '/{{moduleName}}';
     $this->auth = new Authenticate();
-    $this->useCase = new UpdateProductsUseCase();
+    $this->useCase = new Update{{pascalCase moduleName}}UseCase();
 
     add_action('rest_api_init', array($this, 'registerRoute'));
   }
@@ -33,4 +33,4 @@ class UpdateProductController {
   }
 }
 
-$registerController = new UpdateProductController();
+$registerController = new Update{{pascalCase moduleName}}Controller();

@@ -135,6 +135,23 @@ export default {
         }),
       )
 
+      // Update UseCase
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/controllers`,
+          template: 'updateController.hbs',
+          name: 'Update{{pascalCase moduleName}}.controller.php',
+        }),
+      )
+
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/useCases`,
+          template: 'updateUseCase.hbs',
+          name: 'Update{{pascalCase moduleName}}.useCase.php',
+        }),
+      )
+
 
       return arrayFiles
     }
