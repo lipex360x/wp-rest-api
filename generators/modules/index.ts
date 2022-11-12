@@ -49,6 +49,24 @@ export default {
         }),
       )
 
+      // Repository
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/infra/repositories`,
+          template: 'indexRepository.hbs',
+          name: 'index.php',
+        }),
+      )
+
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/infra/repositories`,
+          template: 'repository.hbs',
+          name: '{{pascalCase moduleName}}.repository.php',
+        }),
+      )
+
+
 
       return arrayFiles
     }
@@ -66,12 +84,12 @@ export default {
       action.push(createFile)
     })
 
-    const updateFile = {
-      type: 'append',
-      path: `${COMPONENT_PATH}/index.php`,
-      template: "require_once('{{moduleName}}/index.php');",
-    }
-    action.push(updateFile)
+    // const updateFile = {
+    //   type: 'append',
+    //   path: `${COMPONENT_PATH}/index.php`,
+    //   template: "require_once('{{moduleName}}/index.php');",
+    // }
+    // action.push(updateFile)
 
     return action
   }
