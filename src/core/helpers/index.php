@@ -1,2 +1,2 @@
 <?php
-  require_once('Authenticate.php');
+require_once('Authenticate.php');

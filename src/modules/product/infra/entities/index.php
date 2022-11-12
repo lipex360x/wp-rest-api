@@ -1,2 +1,2 @@
 <?php
-  require_once ('Product.entity.php');
+require_once ('Product.entity.php');

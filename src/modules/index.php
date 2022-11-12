@@ -1,2 +1,3 @@
-<?php 
-  require_once('product/index.php');
+<?php
+// modules 
+require_once('product/index.php');
