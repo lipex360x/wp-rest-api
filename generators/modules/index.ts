@@ -65,7 +65,41 @@ export default {
           name: '{{pascalCase moduleName}}.repository.php',
         }),
       )
+      
+      // Controller
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/controllers`,
+          template: 'indexController.hbs',
+          name: 'index.php',
+        }),
+      )
 
+      // UseCases
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/useCases`,
+          template: 'indexUseCase.hbs',
+          name: 'index.php',
+        }),
+      )
+
+      // Create UseCase     
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/controllers`,
+          template: 'createController.hbs',
+          name: 'Create{{pascalCase moduleName}}.controller.php',
+        }),
+      )
+
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/useCases`,
+          template: 'createUseCase.hbs',
+          name: 'Create{{pascalCase moduleName}}.useCase.php',
+        }),
+      )
 
 
       return arrayFiles
