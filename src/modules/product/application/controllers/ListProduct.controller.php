@@ -4,7 +4,7 @@ require_once plugin_dir_path(__FILE__) . '../useCases/index.php';
 
 class ListProductController {
   function __construct() {
-    $this->route = '/plugin';
+    $this->route = '/product';
     $this->auth = new Authenticate();
     $this->useCase = new ListProductsUseCase();
 
