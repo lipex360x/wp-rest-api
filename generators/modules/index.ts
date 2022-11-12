@@ -101,6 +101,23 @@ export default {
         }),
       )
 
+      // List UseCase     
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/controllers`,
+          template: 'listController.hbs',
+          name: 'List{{pascalCase moduleName}}.controller.php',
+        }),
+      )
+
+      arrayFiles.push(
+        pushFile({
+          path: `${componentPath}/application/useCases`,
+          template: 'listUseCase.hbs',
+          name: 'List{{pascalCase moduleName}}.useCase.php',
+        }),
+      )
+
 
       return arrayFiles
     }
