@@ -160,7 +160,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Product Name 1\",\n\t\"description\": \"Description Product 01\"\n}",
+							"raw": "{\n\t\"title\": \"Product Name 1\",\n\t\"description\": \"Description Product 01\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -287,7 +287,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"description\": \"Description 99\",\n    \"name\": \"Product Name 11\"\n}",
+							"raw": "{\n\t\"description\": \"Description 99\",\n    \"title\": \"Product Name 11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
