@@ -1,10 +1,10 @@
 <?php
 class Authenticate {
   function checkUser () {
-    $user = getUserLoggedQuery();
-    $userId = $user->ID;
+    $user = wp_get_current_user();
 
-    if(!$userId > 0) return false;
+    if(!$user->ID > 0) return false;
+    
     return true;
   }
 
