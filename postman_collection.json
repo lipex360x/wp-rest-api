@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "f752155f-8f6c-4102-9eca-0943f861a6cd",
+		"name": "WordpressAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Generate Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/jwt-auth/v1/token/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"jwt-auth",
+								"v1",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/jwt-auth/v1/token/validate",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"jwt-auth",
+								"v1",
+								"token",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const BASE_URL = pm.globals.get(\"BASE_URL\");",
+							"const ADMIN_USER = pm.globals.get(\"ADMIN_USER\");",
+							"const ADMIN_PASS = pm.globals.get(\"ADMIN_PASS\");",
+							"",
+							"const login = {",
+							"    username: ADMIN_USER,",
+							"    password: ADMIN_PASS ",
+							"}",
+							"",
+							"pm.sendRequest({",
+							"    url: BASE_URL + '/jwt-auth/v1/token',",
+							"    method: 'POST',",
+							"    header: {'Content-type': 'application/json'},",
+							"    body: {",
+							"        mode: 'application/json',",
+							"        raw: JSON.stringify(login)",
+							"    }",
+							"}, function(err, res){",
+							"    pm.environment.set('TOKEN', res.json().token)",
+							"})",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "MODULE",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Product Name 1\",\n\t\"description\": \"Description Product 01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/{{MODULE}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"{{MODULE}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/{{MODULE}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"{{MODULE}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/{{MODULE}}/1672c5c4-af8f-4e1b-8da8-9def7245b142",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"{{MODULE}}",
+								"1672c5c4-af8f-4e1b-8da8-9def7245b142"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"Description 99\",\n    \"name\": \"Product Name 11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/{{MODULE}}/1672c5c4-af8f-4e1b-8da8-9def7245b142",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"{{MODULE}}",
+								"1672c5c4-af8f-4e1b-8da8-9def7245b142"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/{{MODULE}}/1672c5c4-af8f-4e1b-8da8-9def7245b142",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"{{MODULE}}",
+								"1672c5c4-af8f-4e1b-8da8-9def7245b142"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set('MODULE', 'MODULE_NAME')",
+							"",
+							"const BASE_URL = pm.globals.get(\"BASE_URL\")",
+							"const ADMIN_USER = pm.globals.get(\"ADMIN_USER\")",
+							"const ADMIN_PASS = pm.globals.get(\"ADMIN_PASS\")",
+							"",
+							"",
+							"const login = {",
+							"    username: ADMIN_USER,",
+							"    password: ADMIN_PASS ",
+							"}",
+							"",
+							"pm.sendRequest({",
+							"    url: BASE_URL + '/jwt-auth/v1/token',",
+							"    method: 'POST',",
+							"    header: {'Content-type': 'application/json'},",
+							"    body: {",
+							"        mode: 'application/json',",
+							"        raw: JSON.stringify(login)",
+							"    }",
+							"}, function(err, res){",
+							"    pm.environment.set('TOKEN', res.json().token)",
+							"})",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

@@ -11,17 +11,6 @@
     "copy-files": "copyfiles -u 1 generators/**/*.hbs dist",
     "gen": "npm run build && npm run plop"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lipex360x/wp_rest_plugin.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lipex360x/wp_rest_plugin/issues"
-  },
-  "homepage": "https://github.com/lipex360x/wp_rest_plugin#readme",
   "devDependencies": {
     "copyfiles": "^2.4.1",
     "plop": "^3.1.1",

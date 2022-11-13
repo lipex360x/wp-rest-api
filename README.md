@@ -21,7 +21,7 @@
 
 #### :zap: Startup
 * Install Packages
-- Run: `yarn` or `npm` in terminal
+- Run: `yarn` or `npm i` in terminal
 
 * Install Plugins
 
@@ -37,6 +37,18 @@ define('JWT_AUTH_SECRET_KEY', 'JWT_AUTH_SECRET_KEY_STRING');
 
 define('JWT_AUTH_CORS_ENABLE', true);
 ```
+
+* Postman (optional)
+
+Download, install [Postman](https://www.postman.com/downloads/) and import `postman_collection.json` available in this project
+
+Create the Global Variables called to use pre-request script
+* *BASE_URL*
+* *ADMIN_USER*
+* *ADMIN_PASS*
+
+Update the pre-script from *MODULE* path
+
 ---
 
 #### :zap: Generator
