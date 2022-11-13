@@ -5,7 +5,7 @@ class {{pascalCase moduleName}} {
     $this->charset = $wpdb->get_charset_collate();
     $this->tableName = $wpdb->prefix . '{{moduleName}}';
 
-    add_action('activate_backend-api/backend-api.php', array($this, 'registerEntity'));
+    add_action('activate_wp-rest-api/rest-api.php', array($this, 'registerEntity'));
   }
 
   function registerEntity() {

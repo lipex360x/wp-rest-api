@@ -185,12 +185,12 @@ export default {
       action.push(createFile)
     })
 
-    // const updateFile = {
-    //   type: 'append',
-    //   path: `${COMPONENT_PATH}/index.php`,
-    //   template: "require_once('{{moduleName}}/index.php');",
-    // }
-    // action.push(updateFile)
+    const updateFile = {
+      type: 'append',
+      path: `${COMPONENT_PATH}/index.php`,
+      template: "require_once('{{moduleName}}/index.php');",
+    }
+    action.push(updateFile)
 
     return action
   }

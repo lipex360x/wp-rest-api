@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: Backend API
+  Plugin Name: WP REST API
   Version: 1.0
   Author: lipex360
   Author URI: https://www.udemy.com/user/bradschiff/
