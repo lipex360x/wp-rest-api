@@ -7,6 +7,7 @@ class {{pascalCase moduleName}}Repository {
     $this->tableName = $this->entity->tableName();
   }
   
+  
   function create($data) {
     global $wpdb;
     $wpdb->show_errors();
@@ -39,7 +40,9 @@ class {{pascalCase moduleName}}Repository {
   function list() {
     global $wpdb;
 
-    return $wpdb->get_results("SELECT * FROM {$this->tableName}");
+    $query = "SELECT * FROM {$this->tableName}";
+
+    return $wpdb->get_results($query);
   }
 
   function show($id) {
