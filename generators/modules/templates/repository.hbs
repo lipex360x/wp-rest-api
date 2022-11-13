@@ -8,14 +8,32 @@ class {{pascalCase moduleName}}Repository {
   }
   
   function create($data) {
-    // $wpdb->show_errors();
     global $wpdb;
+    $wpdb->show_errors();
 
     $data['id'] = wp_generate_uuid4();
-    $wpdb->insert($this->tableName, $data);
+    $this->tableName;
+
+    $commit = $wpdb->insert($this->tableName, $data);
 
     $query = "SELECT * FROM {$this->tableName} ORDER BY created_at DESC";
-    return $wpdb->get_row($query);
+    $getData = $wpdb->get_row($query);
+
+    if($commit) {
+      $response = [
+        'code' => 200,
+        'message' => 'created',
+        'data' => $getData
+      ];
+    } else {
+      $response = [
+        'code' => 400,
+        'message' => 'failed',
+        'data' => null
+      ];
+    }
+
+    return $response;
   }
 
   function list() {
@@ -32,22 +50,64 @@ class {{pascalCase moduleName}}Repository {
     return $wpdb->get_row($query);
   }
 
+  function findByTitle($title) {
+    global $wpdb;
+
+    $query = "SELECT * FROM {$this->tableName} WHERE title = '{$title}'";
+    
+    return $wpdb->get_row($query);
+  }
+
   function delete($id) {
     global $wpdb;
+    $wpdb->show_errors();
 
     $query = "SELECT * FROM {$this->tableName} WHERE id = '{$id}'";
     $deletedRow = $wpdb->get_row($query);
 
-    $wpdb->delete($this->tableName, array('id' => $id));
+    $commit = $wpdb->delete($this->tableName, array('id' => $id));
 
-    return $deletedRow;
+    if($commit) {
+      $response = [
+        'code' => 200,
+        'message' => 'removed',
+        'data' => $deletedRow
+      ];
+    } else {
+      $response = [
+        'code' => 200,
+        'message' => 'no deleted',
+        'data' => null
+      ];
+    }
+
+    return $response;
   }
 
   function update($id, $updateData) {
     global $wpdb;
+    $wpdb->show_errors();
 
-    $wpdb->update($this->tableName, $updateData, array( 'id' => $id ));
-    return $this->show($id);
+    $commit = $wpdb->update($this->tableName, $updateData, array('id' => $id));
+
+    $query = "SELECT * FROM {$this->tableName} ORDER BY created_at DESC";
+    $getData = $wpdb->get_row($query);
+    
+    if($commit) {
+      $response = [
+        'code' => 200,
+        'message' => 'updated',
+        'data' => $this->show($id)
+      ];
+    } else {
+      $response = [
+        'code' => 200,
+        'message' => 'no updated',
+        'data' => null
+      ];
+    }
+
+    return $response;
   }
 
   function getSchema() {
