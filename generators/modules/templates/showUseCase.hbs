@@ -6,7 +6,11 @@ class Show{{pascalCase moduleName}}UseCase {
     $this->repository = new {{pascalCase moduleName}}Repository();
   }
 
-  function execute($id) {    
-    return $this->repository->show($id);
+  function execute($id) {
+    $getData = $this->repository->show($id);
+
+    if(!$getData) return new WP_Error('data', 'data not found', array('status' => 404));
+
+    return $getData;
   }
 }

@@ -7,6 +7,10 @@ class Delete{{pascalCase moduleName}}UseCase {
   }
 
   function execute($id) {
+    $getData = $this->repository->show($id);
+
+    if(!$getData) return new WP_Error('data', 'data not found', array('status' => 404));
+    
     return $this->repository->delete($id);
   }
 }
