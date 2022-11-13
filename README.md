@@ -1,4 +1,4 @@
-<h2 align="center">Wordpress Rest API Boilerplate</h2>
+<h2 align="center">Wordpress Rest Plugin API Boilerplate</h2>
 <p align="center">Wodpress API with Plop Generator</p>
 
 ---
